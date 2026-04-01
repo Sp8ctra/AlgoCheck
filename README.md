@@ -1,2 +1,2 @@
 # Проект AlgoCheck
-Update documentation
+Update documentation.
