@@ -1,0 +1,2 @@
+# Проект AlgoCheck
+Update documentation
