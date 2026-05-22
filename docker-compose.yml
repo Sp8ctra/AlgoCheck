@@ -1,18 +1,28 @@
 version: '3.8'
 
 services:
+  nginx_proxy:
+    build: ./nginx
+    image: nginx_proxy:latest
+    ports:
+      - "80:80"
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+
   service_analyzer:
     build: ./service_analyzer
-    container_name: service_analyzer
-    ports:
-      - "8080:8080"
-    restart: always
+    image: service_analyzer:latest
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
 
   service_visualizer:
     build: ./service_visualizer
-    container_name: service_visualizer
-    ports:
-      - "8000:8000"
-    restart: always
-    depends_on:
-      - service_analyzer
+    image: service_visualizer:latest
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
